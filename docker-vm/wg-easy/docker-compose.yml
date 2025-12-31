@@ -1,0 +1,27 @@
+volumes:
+  etc_wireguard:
+
+services:
+  wg-easy:
+    environment:
+      - LANG=en
+      - WG_HOST=nirvleach.duckdns.org
+      - PASSWORD_HASH=$$2y$$05$$Agpz7chrPhVlGkMW6R5rmuFiVn.7mk4merExY23kyytRJ924y5TMO
+      - UI_TRAFFIC_STATS=true
+      - UI_CHART_TYPE=2 # (0 Charts disabled, 1 # Line chart, 2 # Area chart, 3 # Bar chart)
+      - UI_ENABLE_SORT_CLIENTS=true
+      - TZ=America/New_York
+    image: ghcr.io/wg-easy/wg-easy
+    container_name: wg-easy
+    volumes:
+      - etc_wireguard:/etc/wireguard
+    ports:
+      - "51820:51820/udp"
+      - "51821:51821/tcp"
+    restart: unless-stopped
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    sysctls:
+      - net.ipv4.ip_forward=1
+      - net.ipv4.conf.all.src_valid_mark=1
