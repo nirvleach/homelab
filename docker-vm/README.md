@@ -17,6 +17,12 @@ Docker compose folders are in /opt/
 
 # Notes
 
+lubelogger
+
+- accessed by going to car.cola.net (see traefik notes)
+- volumes stored on NAS (192.168.68.200)
+
+
 wg-easy
 
 - Router 192.168.1.1 set my Deco router 129.168.1.237 as the DMZ
